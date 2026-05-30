@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_layout_headers",
+  "info": {
+    "displayName": "header",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "icono": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "sectionLink": {
+      "type": "component",
+      "component": "component.link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_component_links",
+  "info": {
+    "displayName": "link",
+    "icon": "paperPlane"
+  },
+  "options": {},
+  "attributes": {
+    "href": {
+      "type": "text",
+      "default": "#",
+      "required": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "isExternal": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

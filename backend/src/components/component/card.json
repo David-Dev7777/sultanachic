@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_component_cards",
+  "info": {
+    "displayName": "card",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "link": {
+      "type": "component",
+      "component": "component.link",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

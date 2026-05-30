@@ -1,0 +1,54 @@
+{
+  "kind": "singleType",
+  "collectionName": "catalogo_pages",
+  "info": {
+    "singularName": "catalogo-page",
+    "pluralName": "catalogo-pages",
+    "displayName": "catalogo_page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "banner_mobile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "banner_desktop": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "catalogo_section": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.hero-section",
+        "layout.product-section",
+        "layout.header",
+        "layout.footer",
+        "layout.product-filters"
+      ]
+    },
+    "descripcion": {
+      "type": "string"
+    }
+  }
+}

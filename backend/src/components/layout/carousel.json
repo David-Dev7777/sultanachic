@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_layout_carousels",
+  "info": {
+    "displayName": "carousel",
+    "icon": "store"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "carrusel_imagenes": {
+      "type": "component",
+      "component": "component.carrusel",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

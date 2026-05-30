@@ -1,0 +1,49 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "home_page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "required": true
+    },
+    "descripcion": {
+      "type": "blocks",
+      "required": true
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "section": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.hero-section",
+        "layout.header",
+        "layout.product-section",
+        "layout.testimonials",
+        "layout.story-section",
+        "layout.neswletter",
+        "layout.footer",
+        "layout.objetive-section",
+        "layout.carousel",
+        "layout.layout-card",
+        "layout.contact-section"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_layout_objetive_sections",
+  "info": {
+    "displayName": "objetive-section",
+    "icon": "handHeart"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

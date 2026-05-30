@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_layout_product_filters",
+  "info": {
+    "displayName": "product-filters",
+    "icon": "filter"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "usarFiltros": {
+      "type": "boolean",
+      "default": false
+    },
+    "genero": {
+      "type": "enumeration",
+      "enum": [
+        "Hombre",
+        "Mujer",
+        "Unisex"
+      ]
+    },
+    "marca": {
+      "type": "enumeration",
+      "enum": [
+        "lattafa",
+        "arnaf"
+      ]
+    },
+    "destacado": {
+      "type": "boolean",
+      "default": false
+    },
+    "limit": {
+      "type": "integer",
+      "default": 5
+    },
+    "productos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::producto.producto"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_component_formulario_contactos",
+  "info": {
+    "displayName": "formulario-contacto",
+    "icon": "discuss"
+  },
+  "options": {},
+  "attributes": {
+    "telefono": {
+      "type": "string"
+    },
+    "correo": {
+      "type": "email",
+      "required": true
+    },
+    "nombre": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

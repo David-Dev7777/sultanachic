@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coleccions",
+  "info": {
+    "singularName": "coleccion",
+    "pluralName": "coleccions",
+    "displayName": "coleccion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nombre"
+    },
+    "descripcion": {
+      "type": "string",
+      "required": true
+    },
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "productos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::producto.producto",
+      "inversedBy": "coleccions"
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "collectionType",
+  "collectionName": "productos",
+  "info": {
+    "singularName": "producto",
+    "pluralName": "productos",
+    "displayName": "producto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "precio": {
+      "type": "decimal",
+      "required": true
+    },
+    "stock": {
+      "type": "integer",
+      "default": 0
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nombre"
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "destacado": {
+      "type": "boolean",
+      "default": false
+    },
+    "genero": {
+      "type": "enumeration",
+      "enum": [
+        "Hombre",
+        "Mujer",
+        "Unisex"
+      ]
+    },
+    "volumen": {
+      "type": "enumeration",
+      "enum": [
+        "ml50",
+        "ml100",
+        "ml150"
+      ]
+    },
+    "coleccions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::coleccion.coleccion",
+      "mappedBy": "productos"
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "link": {
+      "type": "text"
+    },
+    "marca": {
+      "type": "enumeration",
+      "enum": [
+        "Lattafa",
+        "Armaf",
+        "Afnan",
+        "Maison Alhambra",
+        "Fragance World",
+        "Alhambra",
+        "Al Haramain",
+        "Volare",
+        "Hoco"
+      ]
+    },
+    "aroma": {
+      "type": "enumeration",
+      "enum": [
+        "Floral",
+        "Amaderado",
+        "Frutal",
+        "Oriental",
+        "Fresco",
+        "Citrico"
+      ]
+    }
+  }
+}

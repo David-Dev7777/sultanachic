@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tipo_aromas",
+  "info": {
+    "singularName": "tipo-aroma",
+    "pluralName": "tipo-aromas",
+    "displayName": "tipo_aroma"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nombre"
+    }
+  }
+}

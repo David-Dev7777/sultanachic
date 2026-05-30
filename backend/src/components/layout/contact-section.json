@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_layout_contact_sections",
+  "info": {
+    "displayName": "contact-section",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "telefono": {
+      "type": "biginteger"
+    },
+    "Instagram": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

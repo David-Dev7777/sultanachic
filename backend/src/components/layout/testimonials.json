@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_layout_testimonials",
+  "info": {
+    "displayName": "testimonials",
+    "icon": "handHeart"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "card": {
+      "type": "component",
+      "component": "component.card-testimonio",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

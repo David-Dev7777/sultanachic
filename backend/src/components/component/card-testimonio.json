@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_component_card_testimonios",
+  "info": {
+    "displayName": "card-testimonio",
+    "icon": "pencil"
+  },
+  "options": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "texto": {
+      "type": "string",
+      "required": true
+    },
+    "rating": {
+      "type": "integer",
+      "required": true
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "destacado": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

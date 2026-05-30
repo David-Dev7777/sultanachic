@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_layout_product_sections",
+  "info": {
+    "displayName": "product-section",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "component",
+      "component": "component.link",
+      "repeatable": false
+    },
+    "productos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::producto.producto"
+    },
+    "fondo": {
+      "type": "enumeration",
+      "enum": [
+        "negro",
+        "blanco"
+      ]
+    },
+    "isCatalog": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}
