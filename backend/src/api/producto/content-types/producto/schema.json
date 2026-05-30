@@ -62,7 +62,7 @@
       "mappedBy": "productos"
     },
     "descripcion": {
-      "type": "string"
+      "type": "text"
     },
     "link": {
       "type": "text"

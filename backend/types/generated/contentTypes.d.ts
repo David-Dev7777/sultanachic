@@ -608,7 +608,7 @@ export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    descripcion: Schema.Attribute.String;
+    descripcion: Schema.Attribute.Text;
     destacado: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     genero: Schema.Attribute.Enumeration<['Hombre', 'Mujer', 'Unisex']>;
     imagen: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
