@@ -6,7 +6,7 @@ export interface TestimonialCard {
   texto: string;
   raiting: number;
   destacado: boolean;
-  imagen?: StrapiImage; // Assuming the image is stored in Strapi and you want to use the getStrapiImage function to retrieve it
+  imagen?: TestimonialsImagen; 
 }
 
 export interface TestimonialsProps {
@@ -15,7 +15,7 @@ export interface TestimonialsProps {
   card: TestimonialCard[];
 }
 
-export interface StrapiImage {
+export interface TestimonialsImagen {
   url: string;
   alternativeText?: string | null;
   formats?: Record<string, { url: string }>;

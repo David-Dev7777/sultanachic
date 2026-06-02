@@ -6,12 +6,12 @@ import { useRef } from "react";
 
 import { getStrapiImage } from "@/lib/get-strapi-images";
 import { CarouselSection as CarouselSectionType } from "@/types/carousel";
-import { BASE_URL } from "@/lib/strapi";
+
 
 
 
 interface CarouselSectionProps {
-  data: CarouselSectionType;
+  readonly data: CarouselSectionType;
 }
 
 const styles = {
@@ -92,6 +92,7 @@ export function CarouselSection({
     });
   };
 
+
   const images = data.carrusel_imagenes?.imagenes ?? [];
 
 
@@ -133,12 +134,8 @@ export function CarouselSection({
             className={styles.carousel}
           >
             {images.map((item) => {
-              const imageUrl =
-                item.formats?.large?.url
-                  ? `${BASE_URL}${item.formats.large.url}`
-                  : `${BASE_URL}${item.url}`;
+              const imageUrl = getStrapiImage(item, "large");
 
-                  console.log("Total images:", images.length);
               return (
                 <div
                   key={item.id}

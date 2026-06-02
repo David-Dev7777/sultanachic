@@ -1,22 +1,7 @@
-// components/sections/story-section.tsx
+import Image from "next/image";
+
 import { getStrapiImage } from "@/lib/get-strapi-images";
-
-const BASE_URL =
-  process.env.NEXT_PUBLIC_STRAPI_URL ||
-  "http://localhost:1337";
-
-interface StorySectionProps {
-  data: {
-    title: string;
-    subtitle: string;
-    descripcion: string;
-
-    imagen: {
-      url: string;
-      alternativeText?: string;
-    };
-  };
-}
+import { StorySectionProps } from "@/types/story-sections";
 
 const styles = {
   section:
@@ -52,8 +37,11 @@ const styles = {
 
 export default function StorySection({
   data,
-}: StorySectionProps) {
-  const imageUrl = `${BASE_URL}${data.imagen.url}`;
+}: Readonly<StorySectionProps>) {
+  const imageUrl = getStrapiImage(
+    data.imagen,
+    "large"
+  );
 
   return (
     <section className={styles.section}>
@@ -62,12 +50,14 @@ export default function StorySection({
       <div className={styles.container}>
         {/* IMAGE */}
         <div className={styles.imageWrapper}>
-          <img
+          <Image
             src={imageUrl}
             alt={
               data.imagen.alternativeText ||
               data.title
             }
+            width={800}
+            height={800}
             className={styles.image}
           />
         </div>

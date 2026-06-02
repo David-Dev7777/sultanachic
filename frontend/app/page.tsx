@@ -63,7 +63,6 @@ async function PageContent() {
     (s: any) => s.__component === "layout.contact-section"
   );
 
-    console.log("Contact Section Data:", contactSection);
   const footer = data?.section?.find(
     (s: any) => s.__component === "layout.footer"
   );

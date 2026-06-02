@@ -1,28 +1,8 @@
 import Image from "next/image";
+import { TestimonialsProps } from "@/types/testimonials";
+import { getStrapiImage } from "@/lib/get-strapi-images";
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
-interface StrapiImage {
-  id: number;
-  url: string;
-  alternativeText?: string | null;
-}
-
-interface TestimonialCard {
-  id: number;
-  nombre: string;
-  texto: string;
-  raiting: number;
-  destacado: boolean;
-  imagen?: StrapiImage;
-}
-
-interface TestimonialsProps {
-  title: string;
-  subtitle: string;
-  card: TestimonialCard[];
-}
 
 const styles = {
   section:
@@ -92,28 +72,21 @@ export function TestimonialsSection({
 
   return (
     <section className={styles.section}>
-      {/* Background */}
       <div className={styles.backgroundGlow} />
 
       <div className={styles.container}>
-        {/* Header */}
         <div className={styles.header}>
-          <p className={styles.subtitle}>
-            {subtitle}
-          </p>
+          <p className={styles.subtitle}>{subtitle}</p>
 
-          <h2 className={styles.title}>
-            {title}
-          </h2>
+          <h2 className={styles.title}>{title}</h2>
 
           <div className={styles.divider} />
         </div>
 
-        {/* Testimonials */}
         <div className={styles.grid}>
           {card?.map((item) => {
-            const imageUrl = item.imagen?.url
-              ? `${BASE_URL}${item.imagen.url}`
+            const imageUrl = item.imagen
+              ? getStrapiImage(item.imagen)
               : "/placeholder-user.jpg";
 
             return (
@@ -125,15 +98,18 @@ export function TestimonialsSection({
                     : styles.card
                 }
               >
-                {/* Glow */}
                 <div className={styles.cardGlow} />
 
-                {/* User */}
                 <div className={styles.userRow}>
                   <div className={styles.avatarWrapper}>
-                    <img
+                    <Image
                       src={imageUrl}
-                      alt={item.nombre}
+                      alt={
+                        item.imagen?.alternativeText ||
+                        item.nombre
+                      }
+                      fill
+                      sizes="80px"
                       className={styles.avatar}
                     />
                   </div>
@@ -149,12 +125,10 @@ export function TestimonialsSection({
                   </div>
                 </div>
 
-                {/* Text */}
                 <p className={styles.text}>
                   “{item.texto}”
                 </p>
 
-                {/* Featured Badge */}
                 {item.destacado && (
                   <div className={styles.badge}>
                     Cliente Destacado
