@@ -1,11 +1,11 @@
 import qs from "qs";
-import { cache } from "react";
+
+import { unstable_cache } from "next/cache";
 
 export const BASE_URL = process.env.STRAPI_URL;
 export const API_TOKEN = process.env.STRAPI_API_TOKEN ;
 
-console.log("TOKEN:", process.env.STRAPI_API_TOKEN);
-console.log("URL:", process.env.STRAPI_URL);
+
 
 const Query_Home_page = {
   populate: {
@@ -173,11 +173,11 @@ const Query_Home_page = {
 };
 
 
-export const GetHomePage = cache(async () => {
+export const GetHomePage = unstable_cache(async () => {
   const query = qs.stringify(Query_Home_page, { encodeValuesOnly: true });
   const url = `${BASE_URL}/api/home-page?${query}`;
 
-  console.log("🔍 Fetching:", url);
+  console.log("🚀 REAL FETCH TO STRAPI");
 
   const response = await fetch(url, {
      headers: {
@@ -186,6 +186,7 @@ export const GetHomePage = cache(async () => {
     next: {
       revalidate: 60,
     },
+   
   });
 
   if (!response.ok) {
@@ -227,6 +228,16 @@ const Query_Catalogo_page = {
           },
         },
 
+        "layout.header": {
+          populate: {
+            icono: {
+              populate: "*",
+            },
+
+            sectionLink: true,
+          },
+        },
+
         /*
         ========================================
         PRODUCT SECTION
@@ -258,11 +269,11 @@ const Query_Catalogo_page = {
     },
   },
 };
-export const GetCatalogoPage = cache(async () => {
+export const GetCatalogoPage = unstable_cache(async () => {
   const query = qs.stringify(Query_Catalogo_page, { encodeValuesOnly: true });
   const url = `${BASE_URL}/api/catalogo-page?${query}`;
 
-  console.log("🔍 Fetching:", url);
+ 
 
   const response = await fetch(url, {
     headers: {

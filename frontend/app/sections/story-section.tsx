@@ -35,7 +35,7 @@ const styles = {
     "mt-8 max-w-2xl text-lg leading-relaxed text-[#F5F0E6]/70",
 };
 
-export default function StorySection({
+export  function StorySection({
   data,
 }: Readonly<StorySectionProps>) {
   const imageUrl = getStrapiImage(

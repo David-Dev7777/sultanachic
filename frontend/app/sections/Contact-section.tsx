@@ -1,12 +1,12 @@
 // components/sections/contact-section.tsx
 
-import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp, FaFacebookF } from "react-icons/fa";
 import { ContactSectionProps as ContactSectiontype } from "@/types/contactSection";
 
 
 
 interface ContactSectionProps {
-    readonly data: ContactSectiontype | null;
+  readonly data: ContactSectiontype | null;
 
 }
 
@@ -21,13 +21,13 @@ const styles = {
     "relative mx-auto max-w-4xl px-6 text-center lg:px-10",
 
   subtitle:
-        "mb-4 block text-sm uppercase tracking-[0.35em] text-[#C8A96B]",
+    "mb-4 block text-sm uppercase tracking-[0.35em] text-[#C8A96B]",
 
-    title:
-        "font-serif text-4xl leading-tight text-[#F5F0E6] md:text-6xl",
+  title:
+    "font-serif text-4xl leading-tight text-[#F5F0E6] md:text-6xl",
 
-description:
-  "mx-auto mt-8 max-w-2xl text-center text-lg leading-relaxed text-[#F5F0E6]/70",
+  description:
+    "mx-auto mt-8 max-w-2xl text-center text-lg leading-relaxed text-[#F5F0E6]/70",
 
   buttons:
     "mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row",
@@ -35,8 +35,11 @@ description:
   whatsappButton:
     "flex h-14 items-center justify-center gap-3 rounded-full bg-[#25D366] px-8 text-sm font-medium uppercase tracking-[0.15em] text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(37,211,102,0.35)]",
 
-instagramButton:
-  "flex h-14 items-center justify-center gap-3 rounded-full border border-[#DD2A7B]/30 bg-gradient-to-r from-[#F58529]/20 via-[#DD2A7B]/20 to-[#8134AF]/20 px-8 text-sm font-medium uppercase tracking-[0.15em] text-white backdrop-blur-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(221,42,123,0.35)]",
+  facebookButton:
+    "flex h-14 items-center justify-center gap-3 rounded-full border border-[#1877F2]/30 bg-gradient-to-r from-[#1877F2]/20 to-[#4267B2]/20 px-8 text-sm font-medium uppercase tracking-[0.15em] text-white backdrop-blur-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(24,119,242,0.35)]",
+
+  instagramButton:
+    "flex h-14 items-center justify-center gap-3 rounded-full border border-[#DD2A7B]/30 bg-gradient-to-r from-[#F58529]/20 via-[#DD2A7B]/20 to-[#8134AF]/20 px-8 text-sm font-medium uppercase tracking-[0.15em] text-white backdrop-blur-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(221,42,123,0.35)]",
 };
 
 export function ContactSection({
@@ -86,9 +89,22 @@ export function ContactSection({
             className={styles.instagramButton}
           >
             <FaInstagram size={22}
-            className="text-[#DD2A7B]"
-             />
+              className="text-[#DD2A7B]"
+            />
             Instagram
+          </a>
+
+          <a
+            href={data.Facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.facebookButton}
+          >
+            <FaFacebookF
+              size={20}
+              className="text-[#1877F2]"
+            />
+            Facebook
           </a>
         </div>
       </div>

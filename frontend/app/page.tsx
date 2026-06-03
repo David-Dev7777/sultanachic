@@ -4,7 +4,7 @@ import { HeroSection } from "@/app/sections/hero-section";
 import { Header } from "@/app/sections/Header";
 import { ProductsSection } from "@/app/sections/productsSection";
 import { TestimonialsSection } from "@/app/sections/TestimonialsSection";
-import StorySection from "@/app/sections/story-section";
+import { StorySection } from "@/app/sections/story-section";
 import { ContactSection } from "@/app/sections/Contact-section";
 import { Footer } from "@/app/sections/footer";
 import { ObjetiveSection } from "@/app/sections/ObjetiveSection";
@@ -20,6 +20,12 @@ export async function generateMetadata() {
   return {
     title: data?.title || "Home Page",
     description: data?.descripcion?.[0]?.children?.[0]?.text || "",
+
+    icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
   };
 }
 

@@ -9,6 +9,9 @@ const styles = {
   header:
     "relative min-h-screen overflow-hidden bg-black pt-28 text-white lg:pt-32",
 
+  subtitle:
+    "mb-4 block text-sm uppercase tracking-[0.35em] text-[#C8A96B]",
+
   backgroundWrapper:
     "absolute inset-0",
 

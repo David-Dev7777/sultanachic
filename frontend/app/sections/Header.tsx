@@ -53,13 +53,13 @@ const styles = {
 
   // RECORTE + ZOOM PARA ELIMINAR BORDES BLANCOS
   logoImg:
-    "relative z-10 h-[115%] w-[115%] rounded-full object-cover scale-125 transition-transform duration-500 group-hover:scale-135",
+    "relative z-10 h-[135%] w-[135%] rounded-full object-cover scale-125 transition-transform duration-500 group-hover:scale-135",
 
   logoTextWrapper:
     "flex flex-col",
 
   logoTitle:
-    "font-serif text-xl tracking-[0.25em] text-[#F5F0E6] uppercase",
+    "font-serif text-xl tracking-[0.35em] text-[#F5F0E6] uppercase",
 
   logoSubtitle:
     "text-[11px] uppercase tracking-[0.35em] text-[#C8A96B]/70",

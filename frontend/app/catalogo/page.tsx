@@ -21,6 +21,7 @@ export default async function CatalogoPage() {
     (s: any) => s.__component === "layout.header"
   );
 
+
   const footer = data?.catalogo_section?.find(
     (s: any) => s.__component === "layout.footer"
   );
@@ -38,6 +39,7 @@ export default async function CatalogoPage() {
     <section id="inicio">
        {header && <Header data={header} />}
     </section>
+    
 
     <section id="hero">
       {heroSection && (
