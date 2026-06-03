@@ -17,6 +17,9 @@
     },
     "Instagram": {
       "type": "string"
+    },
+    "facebook": {
+      "type": "string"
     }
   },
   "config": {}

@@ -101,6 +101,7 @@ export interface LayoutContactSection extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
+    facebook: Schema.Attribute.String;
     Instagram: Schema.Attribute.String;
     telefono: Schema.Attribute.BigInteger;
     title: Schema.Attribute.String;
