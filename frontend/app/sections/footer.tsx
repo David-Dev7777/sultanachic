@@ -1,27 +1,10 @@
-// components/sections/footer.tsx
-
-const BASE_URL =
-  process.env.NEXT_PUBLIC_STRAPI_URL ||
-  "http://localhost:1337";
-
-interface FooterLink {
-  id: number;
-  href: string;
-  label: string;
-  isExternal?: boolean;
-}
+import { Footer as FooterType} from "@/types/footer";
+import { getStrapiImage } from "@/lib/get-strapi-images";
+import Image from "next/image";
 
 interface FooterProps {
-  data: {
-    title: string;
+  readonly data: FooterType;
 
-    icono?: {
-      url: string;
-      alternativeText?: string;
-    };
-
-    link?: FooterLink[];
-  };
 }
 
 const styles = {
@@ -78,10 +61,17 @@ const styles = {
 export function Footer({
   data,
 }: FooterProps) {
-  const logoUrl = data.icono?.url
-    ? `${BASE_URL}${data.icono.url}`
-    : null;
+  if (!data) return null;
 
+  const {
+    title,
+    icono,
+    link,
+  } = data;
+
+  const logoUrl = icono
+    ? getStrapiImage(icono)
+    : null;
   return (
     <footer className={styles.footer}>
       {/* Glow */}
@@ -93,12 +83,11 @@ export function Footer({
         <div className={styles.brand}>
           {logoUrl && (
             <div className={styles.logoWrapper}>
-              <img
+              <Image
                 src={logoUrl}
-                alt={
-                  data.icono?.alternativeText ||
-                  data.title
-                }
+                alt={icono?.alternativeText || title}
+                width={120}
+                height={120}
                 className={styles.logo}
               />
             </div>
@@ -117,7 +106,7 @@ export function Footer({
 
         {/* NAVIGATION */}
         <nav className={styles.nav}>
-          {data.link?.map((item) => (
+          {link?.map((item) => (
             <a
               key={item.id}
               href={item.href}
@@ -188,7 +177,7 @@ export function Footer({
 
           {/* TikTok */}
           <a
-            href="#"
+            href="https://www.tiktok.com/@sultanachicfragancias"
             className={styles.social}
           >
             <svg
