@@ -115,7 +115,7 @@ export interface LayoutFooter extends Struct.ComponentSchema {
     icon: 'chartCircle';
   };
   attributes: {
-    icono: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    icono: Schema.Attribute.Media<'images'>;
     link: Schema.Attribute.Component<'component.link', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
