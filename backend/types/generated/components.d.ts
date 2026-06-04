@@ -215,8 +215,7 @@ export interface LayoutProductSection extends Struct.ComponentSchema {
     icon: 'apps';
   };
   attributes: {
-    fondo: Schema.Attribute.Enumeration<['negro', 'blanco']>;
-    isCatalog: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    coleccion: Schema.Attribute.Enumeration<['Hombre', 'Mujer', 'Unisex']>;
     link: Schema.Attribute.Component<'component.link', false>;
     productos: Schema.Attribute.Relation<'oneToMany', 'api::producto.producto'>;
     subtitle: Schema.Attribute.String & Schema.Attribute.Required;
