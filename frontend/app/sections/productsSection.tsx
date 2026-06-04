@@ -5,22 +5,134 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { Product } from "@/types/product";
 import { getStrapiImage } from "@/lib/get-strapi-images";
+import { ProductSection as ProductSectionType } from "@/types/ProductSection";
+
+const styles = {
+  section:
+    "relative overflow-hidden bg-black py-28",
+
+  glow:
+    "absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(200,169,107,0.10),transparent_60%)]",
+
+  container:
+    "relative z-10 mx-auto max-w-7xl rounded-[40px] border border-[#C8A96B]/10 bg-black/40 p-8 backdrop-blur-sm lg:p-12",
+
+  header:
+    "mb-20 text-center",
+
+  badge:
+    "mb-5 block text-sm uppercase tracking-[0.4em] text-[#C8A96B]",
+
+  title:
+    "font-serif text-3xl text-[#F5F0E6] md:text-6xl",
+
+  subtitle:
+    "mx-auto mt-6 max-w-3xl text-lg text-[#F5F0E6]/60",
+
+  grid:
+    "grid gap-12 md:grid-cols-3 xl:grid-cols-3",
+
+  card:
+    "overflow-hidden rounded-[32px] border border-[#C8A96B]/10 bg-[#050505] transition-all duration-500 hover:border-[#C8A96B]/30 hover:shadow-[0_0_30px_rgba(200,169,107,0.08)]",
+
+  cardImageContainer:
+    "relative aspect-[3/3] overflow-hidden",
+
+  cardImage:
+    "object-cover transition-transform duration-700 hover:scale-105",
+
+  cardContent:
+    "flex flex-col gap-4 p-9",
+
+  cardTitle:
+    "font-serif text-4xl text-[#F5F0E6]",
+
+  cardBrand:
+    "text-sm uppercase tracking-[0.35em] text-[#C8A96B]",
+
+  cardFooter:
+    "mt-4 flex items-center justify-between",
+
+    cardOverlay: "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent",
+
+
+  price:
+    "text-4xl font-light text-[#C8A96B]",
+
+  viewButton:
+    "rounded-full border border-[#C8A96B]/20 bg-[#1A140A] px-8 py-3 text-sm uppercase tracking-[0.25em] text-[#F5F0E6] transition-all duration-300 hover:border-[#C8A96B] hover:bg-[#C8A96B] hover:text-black",
+
+  /* Modal Producto */
+
+  modalBackdrop:
+    "fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-md",
+
+  modalContainer:
+   "relative w-full max-w-3xl rounded-[24px] border border-[#C8A96B]/20 bg-[#0B0B0B] shadow-[0_0_40px_rgba(0,0,0,0.6)]",
+
+
+  closeButton:
+    "absolute right-5 top-5 z-10 rounded-full border border-white/10 bg-white/5 p-2 text-white transition hover:bg-white/10",
+
+  modalGrid: 
+  "grid md:grid-cols-[1fr_2fr] gap-6",
+
+
+ modalImage: 
+  "relative w-full h-full object-cover rounded-l-[25px]",
+
+
+ modalContent:
+  "flex flex-col justify-center p-6 text-white",
+
+
+  modalBrand:
+    "mb-4 text-xs uppercase tracking-[0.4em] text-[#C8A96B]",
+
+  modalTitle:
+    "font-serif text-4xl text-[#F5F0E6]",
+
+  modalDescription:
+    "mt-6 leading-relaxed text-white/70",
+
+  modalPrice:
+    "mt-8 text-2xl text-[#C8A96B]",
+
+  buyButton:
+    "mt-6 inline-flex w-fit items-center justify-center rounded-full bg-[#C8A96B] px-6 py-3 text-sm uppercase tracking-[0.3em] text-black transition-all duration-300 hover:scale-105 hover:bg-[#d8b97b]",
+
+  /* Redirect Modal */
+
+  redirectBackdrop:
+    "fixed inset-0 z-[60] flex items-center justify-center bg-black/80 px-4 backdrop-blur-md",
+
+  redirectContainer:
+    "w-full max-w-md rounded-[32px] border border-[#C8A96B]/20 bg-[#0B0B0B] p-8 text-center shadow-[0_0_50px_rgba(0,0,0,0.7)]",
+
+  redirectIcon:
+    "mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#C8A96B]/10 text-3xl text-[#C8A96B]",
+
+  redirectTitle:
+    "font-serif text-3xl text-[#F5F0E6]",
+
+  redirectText:
+    "mt-4 leading-relaxed text-white/70",
+
+  redirectButton:
+    "mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#C8A96B] px-6 py-4 text-sm uppercase tracking-[0.3em] text-black transition-all duration-300 hover:bg-[#d8b97b]",
+};
 
 
 interface ProductSectionProps {
-  title: string;
-  subtitle: string;
-  productos: Product[];
-  fondo: string;
-  isCatalog?: boolean;
+  readonly data: ProductSectionType;
 }
-
 export function ProductsSection({
   data,
-}: {
-  readonly data: ProductSectionProps;
-}) {
-  const { title, subtitle, productos, fondo } = data;
+}: ProductSectionProps) {
+
+
+
+  const { title, subtitle, productos = [], coleccion } = data;
 
   //estado para el producto seleccionado en el modal
   const [selectedProduct, setSelectedProduct] =
@@ -30,68 +142,30 @@ export function ProductsSection({
   const [showRedirectModal, setShowRedirectModal] =
     useState(false);
 
-  const isDark = fondo === "negro";
 
-  const sectionStyles = isDark
-    ? "bg-[#050505] text-white"
-    : "bg-[#F5F1EA] text-[#2B2118]";
-
-  const titleStyles = isDark
-    ? "text-[#F5F0E6]"
-    : "text-[#2B2118]";
-
-  const subtitleStyles = isDark
-    ? "text-[#F5F0E6]/60"
-    : "text-[#6B5B4D]";
-
-  const cardStyles = isDark
-    ? "border-white/5 bg-gradient-to-b from-[#16110D] to-[#0B0B0B]"
-    : "border-[#E8DED1] bg-[#FCFAF7] shadow-[0_4px_20px_rgba(0,0,0,0.04)]";
-
-  const cardTitleStyles = isDark
-    ? "text-[#F5F0E6]"
-    : "text-[#2B2118]";
-
-  const cardTextStyles = isDark
-    ? "text-[#C8A96B]/70"
-    : "text-[#8B7355]";
-
-  const buttonStyles = isDark
-    ? "border-[#C8A96B]/20 bg-[#C8A96B]/10 text-[#F5F0E6] hover:border-[#C8A96B]/50 hover:bg-[#C8A96B]/20"
-    : "border-[#C8A96B]/30 bg-[#C8A96B]/5 text-[#2B2118] hover:bg-[#C8A96B]/10";
 
   return (
     <>
-      <section
-        className={`relative -mt-10 overflow-hidden rounded-t-[40px] py-28 transition-colors duration-500 ${sectionStyles}`}
-      >
-        {/* Glow Background */}
-        {isDark && (
-          <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-[radial-gradient(circle,rgba(200,169,107,0.12),transparent_70%)]" />
-        )}
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+      <section className={styles.section}>
+      <div className={styles.glow} />
+        <div className={styles.container}>
           {/* Header */}
-          <div className="mb-16 text-center">
-            <span className="mb-5 inline-block rounded-full border border-[#C8A96B]/20 bg-[#C8A96B]/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[#C8A96B]">
-              Colección Premium
+          <div className={styles.header}>
+            <span className={styles.badge}>
+              {coleccion || "Colección Premium"}
             </span>
 
-            <h2
-              className={`font-serif text-4xl md:text-5xl ${titleStyles}`}
-            >
+            <h2 className={styles.title}>
               {title}
             </h2>
 
-            <p
-              className={`mx-auto mt-6 max-w-2xl text-lg ${subtitleStyles}`}
-            >
+            <p className={styles.subtitle}>
               {subtitle}
             </p>
           </div>
 
-          {/* Responsive Adaptive Grid */}
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,320px))] justify-center gap-8">
+          {/* Products Grid */}
+          <div className={styles.grid}>
             {productos?.map((product) => {
               const image = product.imagen;
 
@@ -103,10 +177,14 @@ export function ProductsSection({
               return (
                 <article
                   key={product.id}
-                  className={`group overflow-hidden rounded-[28px] border transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/30 hover:shadow-[0_0_40px_rgba(200,169,107,0.15)] ${cardStyles}`}
+                  className={styles.card}
                 >
                   {/* IMAGE */}
-                  <div className="relative aspect-[4/4] overflow-hidden">
+                  <div
+                    className={
+                      styles.cardImageContainer
+                    }
+                  >
                     <Image
                       src={imageURL}
                       alt={
@@ -114,40 +192,64 @@ export function ProductsSection({
                         product.nombre
                       }
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className={styles.cardImage}
                     />
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                    <div
+                      className={
+                        styles.cardOverlay
+                      }
+                    />
                   </div>
 
                   {/* CONTENT */}
-                  <div className="flex flex-col p-6">
+                  <div
+                    className={
+                      styles.cardContent
+                    }
+                  >
                     <div>
                       <h3
-                        className={`mt-3 line-clamp-2 font-serif text-2xl ${cardTitleStyles}`}
+                        className={
+                          styles.cardTitle
+                        }
                       >
                         {product.nombre}
                       </h3>
 
                       <span
-                        className={`mt-3 flex text-xs uppercase tracking-[0.3em] ${cardTextStyles}`}
+                        className={
+                          styles.cardBrand
+                        }
                       >
-                        {product?.marca || "Perfume Árabe"}
+                        {product?.marca ||
+                          "Perfume Árabe"}
                       </span>
                     </div>
 
                     {/* FOOTER */}
-                    <div className="mt-6 flex items-center justify-between gap-4">
-                      <span className="text-xl font-medium text-[#C8A96B]">
+                    <div
+                      className={
+                        styles.cardFooter
+                      }
+                    >
+                      <span
+                        className={
+                          styles.price
+                        }
+                      >
                         ${product.precio}
                       </span>
 
                       <button
                         onClick={() =>
-                          setSelectedProduct(product)
+                          setSelectedProduct(
+                            product
+                          )
                         }
-                        className={`rounded-full border px-4 py-2 text-xs uppercase tracking-[0.2em] transition-all duration-300 ${buttonStyles}`}
+                        className={
+                          styles.viewButton
+                        }
                       >
                         Ver Más
                       </button>
@@ -160,30 +262,42 @@ export function ProductsSection({
         </div>
       </section>
 
-      {/* MODAL */}
+      {/* PRODUCT MODAL */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
-
-          <div className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-[32px] border border-[#C8A96B]/20 bg-[#0B0B0B] shadow-[0_0_60px_rgba(0,0,0,0.7)]">
-
-            {/* CLOSE */}
+        <div
+          className={styles.modalBackdrop}
+        >
+          <div
+            className={
+              styles.modalContainer
+            }
+          >
             <button
-              onClick={() => setSelectedProduct(null)}
-              className="absolute right-5 top-5 z-10 rounded-full border border-white/10 bg-white/5 p-2 text-white transition hover:bg-white/10"
+              onClick={() =>
+                setSelectedProduct(null)
+              }
+              className={
+                styles.closeButton
+              }
             >
               <X size={18} />
             </button>
 
-            <div className="grid items-center md:grid-cols-2">
-
+            <div className={styles.modalGrid}>
               {/* IMAGE */}
-              <div className="relative h-[360px] md:h-[500px]">
+              <div
+                className={
+                  styles.modalImage
+                }
+              >
                 <Image
                   src={getStrapiImage(
                     selectedProduct.imagen,
                     "medium"
                   )}
-                  alt={selectedProduct.nombre}
+                  alt={
+                    selectedProduct.nombre
+                  }
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
@@ -191,72 +305,119 @@ export function ProductsSection({
               </div>
 
               {/* CONTENT */}
-              <div className="flex min-h-full flex-col justify-center p-8 md:p-10 text-white">
-
-                <span className="mb-4 text-xs uppercase tracking-[0.4em] text-[#C8A96B]">
+              <div
+                className={
+                  styles.modalContent
+                }
+              >
+                <span
+                  className={
+                    styles.modalBrand
+                  }
+                >
                   {selectedProduct.marca ||
                     "Perfume Premium"}
                 </span>
 
-                <h2 className="font-serif text-4xl md:text-5xl text-[#F5F0E6]">
+                <h2
+                  className={
+                    styles.modalTitle
+                  }
+                >
                   {selectedProduct.nombre}
                 </h2>
 
-                <p className="mt-6 leading-relaxed text-white/70">
+                <p
+                  className={
+                    styles.modalDescription
+                  }
+                >
                   {selectedProduct.descripcion ||
                     "Fragancia exclusiva con notas sofisticadas y una esencia elegante de larga duración."}
                 </p>
 
-                <div className="mt-8 text-3xl text-[#C8A96B]">
+                <div
+                  className={
+                    styles.modalPrice
+                  }
+                >
                   ${selectedProduct.precio}
                 </div>
 
-                {/* Comprar Ahora Button */}
                 <button
-                  onClick={() => setShowRedirectModal(true)}
-                  className="mt-10 inline-flex w-fit items-center justify-center rounded-full bg-[#C8A96B] px-8 py-4 text-sm uppercase tracking-[0.3em] text-black transition-all duration-300 hover:scale-105 hover:bg-[#d8b97b]"
+                  onClick={() =>
+                    setShowRedirectModal(
+                      true
+                    )
+                  }
+                  className={
+                    styles.buyButton
+                  }
                 >
                   Comprar Ahora
                 </button>
-
               </div>
             </div>
           </div>
         </div>
-      )
-      }
+      )}
 
       {/* REDIRECT MODAL */}
       {showRedirectModal && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm">
-
-          <div className="w-full max-w-md rounded-[28px] border border-[#C8A96B]/20 bg-[#0B0B0B] p-8 text-center shadow-[0_0_50px_rgba(0,0,0,0.7)]">
-
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#C8A96B]/10 text-3xl text-[#C8A96B]">
+        <div
+          className={
+            styles.redirectBackdrop
+          }
+        >
+          <div
+            className={
+              styles.redirectContainer
+            }
+          >
+            <div
+              className={
+                styles.redirectIcon
+              }
+            >
               ✦
             </div>
 
-            <h3 className="font-serif text-3xl text-[#F5F0E6]">
+            <h3
+              className={
+                styles.redirectTitle
+              }
+            >
               Redirección
             </h3>
 
-            <p className="mt-4 leading-relaxed text-white/70">
-              Serás dirigido a la página de compra
-              para continuar con tu pedido.
+            <p
+              className={
+                styles.redirectText
+              }
+            >
+              Serás dirigido a la página
+              de compra para continuar
+              con tu pedido.
             </p>
 
             <button
               onClick={() => {
-                if (selectedProduct?.link) {
+                if (
+                  selectedProduct?.link
+                ) {
                   window.open(
                     selectedProduct.link,
                     "_blank"
                   );
                 }
 
-                setShowRedirectModal(false);
+                setShowRedirectModal(
+                  false
+                );
               }}
-              className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#C8A96B] px-6 py-4 text-sm uppercase tracking-[0.3em] text-black transition-all duration-300 hover:scale-[1.02] hover:bg-[#d8b97b]"
+              className={
+                styles.redirectButton
+              }
             >
               Aceptar
             </button>
@@ -265,5 +426,5 @@ export function ProductsSection({
       )}
     </>
   );
-}
 
+}

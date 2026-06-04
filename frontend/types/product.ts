@@ -1,9 +1,5 @@
 
-import {
-  GENEROS,
-  MARCAS,
-  AROMAS,
-} from "@/lib/filters";
+
 
 export interface Product {
   id: number
