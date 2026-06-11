@@ -48,6 +48,8 @@ export function ContactSection({
 
   if (!data) return null;
 
+  console.log(data);
+
   const whatsappMessage = encodeURIComponent(
     `Hola Sultana chic vengo desde la página y me gustaría recibir más información sobre sus fragancias.`
   );
@@ -95,7 +97,7 @@ export function ContactSection({
           </a>
 
           <a
-            href={data.Facebook}
+            href={data.facebook}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.facebookButton}
