@@ -45,14 +45,18 @@ export default function RootLayout({
         </Script>
 
         {/* Noscript alternativo para navegadores sin JavaScript (Opcional pero recomendado) */}
-        <noscript>
-          <iframe
-            src="https://googletagmanager.com"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `
+              <iframe 
+              src="https://www.googletagmanager.com/ns.html?id=GTM-PRM92F5M"
+              height="0"
+              width="0"
+              style="display:none;visibility:hidden">
+              </iframe>
+            `,
+          }}
+        />
 
         {children}
       </body>
